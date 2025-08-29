@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:17
+    container_name: fitness-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin@123
+      POSTGRES_DB: fitness_user_db
+      TZ: Asia/Kolkata
+      PGTZ: Asia/Kolkata   # ✅ Postgres internal timezone
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
