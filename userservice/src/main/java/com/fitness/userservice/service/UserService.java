@@ -12,10 +12,10 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    
+
     private final UserRepo userRepo;
 
-    public UserResponse register(RegisterRequest request){
+    public UserResponse register(RegisterRequest request) {
         if (userRepo.existsByEmail(request.email())) {
             throw new RuntimeException("Email already exist");
         }
@@ -28,14 +28,29 @@ public class UserService {
 
         User savedUser = userRepo.save(user);
         UserResponse userResponse = new UserResponse(
-            savedUser.getId(),
-            savedUser.getEmail(),
-            savedUser.getPassword(),
-            savedUser.getFirstName(),
-            savedUser.getLastName(),
-            savedUser.getCreatedAt(),
-            savedUser.getUpdatedAt()
-        );
+                savedUser.getId(),
+                savedUser.getEmail(),
+                savedUser.getPassword(),
+                savedUser.getFirstName(),
+                savedUser.getLastName(),
+                savedUser.getCreatedAt(),
+                savedUser.getUpdatedAt());
+
+        return userResponse;
+    }
+
+    public UserResponse getUserProfile(String userId) {
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        UserResponse userResponse = new UserResponse(
+                user.getId(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getCreatedAt(),
+                user.getUpdatedAt());
 
         return userResponse;
     }
