@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -31,5 +32,10 @@ public class ActivityController {
     @GetMapping
     public ResponseEntity<List<ActivityResponse>> getUserActivites(@RequestHeader("X-USER-ID") String userId){
         return ResponseEntity.ok(activityService.getUsersActivities(userId));
+    }
+
+    @GetMapping("/{activityId}")
+    public ResponseEntity<ActivityResponse> getActivity(@PathVariable String  activityId){
+        return ResponseEntity.ok(activityService.getActivityById(activityId));
     }
 }
