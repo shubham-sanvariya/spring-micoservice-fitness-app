@@ -1,0 +1,16 @@
+
+services:
+  # MongoDB container exclusively for the AI Service
+  mongodb:
+    image: mongo:6.0
+    container_name: fitness-ai-db # Unique name
+    restart: always
+    ports:
+      - "27018:27017" # Map to a unique host port (27018)
+    environment:
+      MONGO_INITDB_DATABASE: fitnessrecommendation
+    volumes:
+      - ai_mongo_data:/data/db
+
+volumes:
+  ai_mongo_data: # Named volume specific to this service
