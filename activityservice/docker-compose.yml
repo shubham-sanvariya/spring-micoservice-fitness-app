@@ -5,11 +5,25 @@ services:
     container_name: fitness-mongodb
     restart: always
     ports:
-      - "27018:27017"
+      - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: fitnessactivity
     volumes:
       - mongo_data:/data/db
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: fitness-rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"   # AMQP protocol port
+      - "15672:15672" # Management UI port
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
 volumes:
   mongo_data:
+  rabbitmq_data:
