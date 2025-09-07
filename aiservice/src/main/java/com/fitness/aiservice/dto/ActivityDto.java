@@ -6,6 +6,7 @@ import java.util.Map;
 public record ActivityDto(
         String id,
         String userId,
+        String type,
         Integer duration,
         Integer caloriesburned,
         LocalDateTime startTime,

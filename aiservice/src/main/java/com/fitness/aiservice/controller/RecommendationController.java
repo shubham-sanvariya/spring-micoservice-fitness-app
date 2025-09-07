@@ -21,11 +21,12 @@ public class RecommendationController {
     private final RecommendationService recommendationService;
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Recommendation>> getUserRecommendation(String userId){
+    public ResponseEntity<List<Recommendation>> getUserRecommendation(@PathVariable String userId){
+        System.out.println("USER " + userId);
         return ResponseEntity.ok(recommendationService.getUserRecommendation(userId));
     }
 
-    @GetMapping("/user/{activityId}")
+    @GetMapping("/activity/{activityId}")
     public ResponseEntity<Recommendation> getActivityRecommendation(@PathVariable String activityId){
         return ResponseEntity.ok(recommendationService.getActivityRecommendation(activityId));
     }
