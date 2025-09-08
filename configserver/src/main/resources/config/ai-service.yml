@@ -28,7 +28,7 @@ rabbitmq:
   routing:
     key: activity.tracking
 
-gemini:
-  api:
-    url: ${GEMINI_API_URL}
-    key: ${GEMINI_API_KEY}
+# gemini:
+#   api: directly access from the .env file
+#     url: ${GEMINI_API_URL}
+#     key: ${GEMINI_API_KEY}
