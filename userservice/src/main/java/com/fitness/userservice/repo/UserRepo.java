@@ -6,5 +6,6 @@ import com.fitness.userservice.model.User;
 
 
 public interface UserRepo extends JpaRepository<User, String>{
-    boolean existsByEmail(String email);   
+    boolean existsByEmail(String email);
+    boolean existsByKeycloakId(String keycloakId);
 }

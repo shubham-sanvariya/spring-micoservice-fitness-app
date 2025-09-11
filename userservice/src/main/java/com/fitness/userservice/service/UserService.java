@@ -31,6 +31,7 @@ public class UserService {
         User savedUser = userRepo.save(user);
         UserResponse userResponse = new UserResponse(
                 savedUser.getId(),
+                savedUser.getKeycloakId(),
                 savedUser.getEmail(),
                 savedUser.getPassword(),
                 savedUser.getFirstName(),
@@ -47,6 +48,7 @@ public class UserService {
 
         UserResponse userResponse = new UserResponse(
                 user.getId(),
+                user.getKeycloakId(),
                 user.getEmail(),
                 user.getPassword(),
                 user.getFirstName(),
@@ -57,8 +59,8 @@ public class UserService {
         return userResponse;
     }
 
-    public Boolean existByUserId(String userId){
-        log.info("Calling User Validation API for userId: {}", userId);
-        return userRepo.existsById(userId);
+    public Boolean existByKeycloakId(String keyCloakId){
+        log.info("Calling User Validation API for keyCloakId: {}", keyCloakId);
+        return userRepo.existsByKeycloakId(keyCloakId);
     }
 }
