@@ -25,6 +25,7 @@ public class UserService {
         User user = new User();
         user.setEmail(request.email());
         user.setPassword(request.password());
+        user.setKeycloakId(request.keycloakId());
         user.setFirstName(request.firstName());
         user.setLastName(request.lastName());
 
